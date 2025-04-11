@@ -24,19 +24,19 @@ RUN npm run build
 
 # Set environment variables
 ENV UPTIME_KUMA_HOST="0.0.0.0"
-ENV PORT=80
+ENV PORT=3001
 
 # Expose the port
-EXPOSE 80
+EXPOSE 3001
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:80/ || exit 1
+  CMD curl -f http://localhost:3001/ || exit 1
 
 # Set volume for data persistence
 VOLUME ["/app/data"]
 
-# Switch back to node user
+# Switch back to node user for running the application
 USER node
 
 # Command to run the application
