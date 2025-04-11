@@ -13,6 +13,9 @@ COPY . .
 # Build the application
 RUN npm run build
 
+# Set environment variables for binding to all interfaces
+ENV UPTIME_KUMA_HOST="0.0.0.0"
+
 # Expose the port the app runs on
 EXPOSE 3001
 
