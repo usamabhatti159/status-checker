@@ -1,21 +1,23 @@
-# Use Node.js 20.4 as per Uptime Kuma requirements
-FROM node:20.4
+FROM node:18-alpine
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Install dependencies
+# Install app dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm ci --only=production
 
-# Copy the rest of the app
+# Bundle app source
 COPY . .
 
-# Build the app (not needed for Uptime Kuma, it runs directly)
-# RUN npm run build (commented out as Uptime Kuma doesn't require this)
+# Build the application
+RUN npm run build
 
-# Expose port 3001 (Uptime Kuma default)
+# Expose the port the app runs on
 EXPOSE 3001
 
-# Start the server
+# Set volume for data persistence
+VOLUME ["/app/data"]
+
+# Command to run the application
 CMD ["node", "server/server.js"]
