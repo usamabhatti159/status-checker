@@ -1,0 +1,12 @@
+{
+  "captainVersion": "2",
+  "services": {
+    "$": {
+      "image": "node:20.4",
+      "ports": ["3001:3001"],
+      "volumes": ["/app/data:/app/data"],
+      "environment": {},
+      "dockerfile": "Dockerfile"
+    }
+  }
+}
